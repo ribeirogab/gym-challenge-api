@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsup src",
     "deploy": "./scripts/deploy.sh",
-    "postinstall": "node postinstall.js"
+    "postinstall": "node ./scripts/postinstall.js"
   },
   "keywords": [],
   "author": "",

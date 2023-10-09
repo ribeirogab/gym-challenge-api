@@ -10,5 +10,5 @@
     "allowJs": true,
     "resolveJsonModule": true
   },
-  "exclude": ["postinstall.js", "dist"]
+  "exclude": ["scripts", "dist"]
 }

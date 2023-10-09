@@ -20,6 +20,7 @@ coverage
 # Scripts directory
 scripts/**/*
 !scripts/*.sh
+!scripts/*.js
 
 # FFmpeg layer
 layers/ffmpeg/bin/**/*
