@@ -43,15 +43,21 @@ functions:
           method: any
           path: /{any+}
 
-  create-random-phrase-job:
+  jobs:
     handler: dist/jobs/create-random-phrase.job.handler
-    name: ${self:custom.functionName}-create-random-phrase-job
+    name: ${self:custom.functionName}-jobs
     layers:
       - !Ref DependenciesLambdaLayer
     package:
       patterns:
         - "!./**"
         - dist/jobs/**
+    events:
+      - schedule:
+          rate: rate(1 minute)
+          enabled: true
+          input:
+            key: '{"key": "value"}'
 
 layers:
   dependencies:
