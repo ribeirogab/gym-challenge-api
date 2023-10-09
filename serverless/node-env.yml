@@ -1,0 +1,4 @@
+nodeEnv:
+  local: development
+  dev: production
+  prod: production

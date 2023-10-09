@@ -1,0 +1,47 @@
+service: gym-challenge-api
+frameworkVersion: '3'
+
+plugins:
+  - serverless-stage-manager
+
+custom:
+  stages: ${file(./serverless/stages.yml):stages}
+  functionName: ${sls:stage}-gym-challenge-api
+  stackName: ${self:custom.functionName}-stack
+  nodeEnv: ${file(./serverless/node-env.yml):nodeEnv}
+
+provider:
+  name: aws
+  region: us-east-2
+  runtime: nodejs18.x
+  memorySize: 1024
+  timeout: 900
+  stage: prod
+  stackName: ${self:custom.stackName}
+  environment:
+    NODE_ENV: ${self:custom.nodeEnv.${sls:stage}}
+    STAGE: ${sls:stage}
+
+package:
+  individually: true
+  patterns:
+    - "!node_modules/**"
+
+functions:
+  gym-challenge-api:
+    handler: dist/index.handler
+    name: ${self:custom.functionName}
+    layers:
+      - !Ref DependenciesLambdaLayer
+    package:
+      patterns:
+        - "!./**"
+        - dist/**
+        - assets/**
+
+layers:
+  dependencies:
+    name: ${self:custom.functionName}-dependencies-layer
+    path: layers/dependencies
+    compatibleRuntimes:
+      - nodejs18.x

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
+    "target": "ES2021",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "resolveJsonModule": true
+  },
+  "exclude": ["postinstall.js"]
+}

@@ -1,0 +1,29 @@
+# Package/dist directories
+node_modules
+jspm_packages
+dist
+
+# Temp directiories
+tmp/video.mp4
+tmp/*/*
+!tmp/*/.gitkeep
+
+# Ennvironment variables
+.env
+
+# Test coverage folder
+coverage
+
+# Serverless directories
+.serverless
+
+# Scripts directory
+scripts/**/*
+!scripts/*.sh
+
+# FFmpeg layer
+layers/ffmpeg/bin/**/*
+!layers/ffmpeg/bin/.gitkeep
+
+# FFmpeg downloaded files
+ffmpeg-*-amd64-static*
