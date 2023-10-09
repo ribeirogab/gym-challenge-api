@@ -6,7 +6,7 @@ plugins:
 
 custom:
   stages: ${file(./serverless/stages.yml):stages}
-  functionName: ${sls:stage}-gym-challenge-api
+  functionName: ${sls:stage}-gym-challenge
   stackName: ${self:custom.functionName}-stack
   nodeEnv: ${file(./serverless/node-env.yml):nodeEnv}
 
@@ -30,18 +30,28 @@ package:
 functions:
   api:
     handler: dist/index.handler
-    name: ${self:custom.functionName}
+    name: ${self:custom.functionName}-api
     layers:
       - !Ref DependenciesLambdaLayer
     package:
       patterns:
         - "!./**"
+        - "!./dist/jobs/**"
         - dist/**
-        - assets/**
     events:
       - http:
           method: any
           path: /{any+}
+
+  create-random-phrase-job:
+    handler: dist/jobs/create-random-phrase.job.handler
+    name: ${self:custom.functionName}-create-random-phrase-job
+    layers:
+      - !Ref DependenciesLambdaLayer
+    package:
+      patterns:
+        - "!./**"
+        - dist/jobs/**
 
 layers:
   dependencies:
