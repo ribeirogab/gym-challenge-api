@@ -28,7 +28,7 @@ package:
     - "!node_modules/**"
 
 functions:
-  gym-challenge-api:
+  api:
     handler: dist/index.handler
     name: ${self:custom.functionName}
     layers:
@@ -38,6 +38,10 @@ functions:
         - "!./**"
         - dist/**
         - assets/**
+    events:
+      - http:
+          method: any
+          path: /{any+}
 
 layers:
   dependencies:
