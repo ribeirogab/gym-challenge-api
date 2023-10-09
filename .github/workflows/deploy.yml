@@ -1,12 +1,10 @@
-name: Deploy video-maker
+name: Deploy gym-challenge-api
 on:
   push:
     branches:
       - main
     paths:
       - src/**
-      - scripts/**
-      - assets/**
       - serverless/**
       - serverless.yml
       - package.json
