@@ -1,7 +1,6 @@
-import { createRandomPhraseJob } from './create-random-phrase.job';
+import { JobsEnum } from '../constants/jobs.constants';
+import { container } from './container';
 
-export const handler = async (event: unknown) => {
-  console.log(event);
-
-  return createRandomPhraseJob();
+export const handler = async ({ job: jobName }: { job: JobsEnum }) => {
+  return container({ job: jobName }).job().execute;
 };

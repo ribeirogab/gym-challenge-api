@@ -15,7 +15,6 @@ provider:
   region: us-east-1
   runtime: nodejs18.x
   memorySize: 1024
-  timeout: 900
   stage: prod
   stackName: ${self:custom.stackName}
   environment:
@@ -44,7 +43,7 @@ functions:
           path: /{any+}
 
   jobs:
-    handler: dist/jobs/create-random-phrase.job.handler
+    handler: dist/jobs/index.handler
     name: ${self:custom.functionName}-jobs
     layers:
       - !Ref DependenciesLambdaLayer
@@ -54,10 +53,10 @@ functions:
         - dist/jobs/**
     events:
       - schedule:
-          rate: rate(1 minute)
+          rate: cron(* * * * ? *)
           enabled: true
           input:
-            key: '{"key": "value"}'
+            job: 'create-random-phrase'
 
 layers:
   dependencies:
