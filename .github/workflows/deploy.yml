@@ -4,11 +4,13 @@ on:
     branches:
       - main
     paths:
-      - src/**
-      - serverless/**
-      - serverless.yml
-      - package.json
+      - .github/workflows/deploy.yml
       - postinstall.js
+      - serverless.yml
+      - serverless/**
+      - package.json
+      - scripts/**
+      - src/**
 
 jobs:
   deploy:
