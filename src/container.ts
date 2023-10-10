@@ -9,7 +9,9 @@ let phraseController: PhraseController;
 
 export const container = () => {
   getLastPhraseService = getLastPhraseService || new GetLastPhraseService();
-  phraseController = phraseController || new PhraseController();
+
+  phraseController =
+    phraseController || new PhraseController(getLastPhraseService);
 
   return {
     controllers: {

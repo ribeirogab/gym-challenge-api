@@ -5,6 +5,11 @@ import { container } from '../container';
 export const phraseRoutes = async (app: FastifyInstance) => {
   const { controllers } = container();
 
-  // List last phrase
-  app.get('/', controllers.phraseController.getLastPhrase);
+  // Get last phrase
+  app.get(
+    '/last',
+    controllers.phraseController.getLastPhrase.bind(
+      controllers.phraseController,
+    ),
+  );
 };

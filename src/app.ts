@@ -1,15 +1,9 @@
 import Fastify from 'fastify';
 
+import { routes } from './routes';
+
 const app = Fastify();
 
-app.get('/test', async (_request, _reply) => {
-  return { msg: 'Hello! from Fastify!' };
-});
-
-app.post('/test', async (request, _reply) => {
-  const body = request.body;
-
-  return { msg: 'Fastify received your post request!', body };
-});
+app.register(routes);
 
 export { app };
