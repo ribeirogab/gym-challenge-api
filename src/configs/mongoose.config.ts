@@ -22,6 +22,8 @@ class MongooseConfig {
 
   public async connect() {
     if (Mongoose.connection?.readyState !== 1) {
+      console.log('[MongooseConfig] - Connecting with MongoDB...');
+
       await Mongoose.connect(this.connectionUri, this.connectOptions);
 
       console.log(
