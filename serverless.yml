@@ -59,7 +59,7 @@ functions:
         - dist/**
     events:
       - schedule:
-          rate: cron(* * * * ? *)
+          rate: cron(* 3 * * ? *)
           enabled: true
           input:
             job: 'create-random-phrase'
