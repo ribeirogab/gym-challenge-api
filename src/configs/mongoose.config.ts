@@ -3,6 +3,8 @@ import Mongoose from 'mongoose';
 import { env } from './env.config';
 
 class MongooseConfig {
+  public isConnected = false;
+
   get connectionUri() {
     const options = env.MONGODB_URI_OPTIONS
       ? `?${env.MONGODB_URI_OPTIONS}`
@@ -21,16 +23,22 @@ class MongooseConfig {
   public async connect() {
     if (Mongoose.connection?.readyState !== 1) {
       await Mongoose.connect(this.connectionUri, this.connectOptions);
-      console.log('MongoDB | connection has been established successfully');
+
+      console.log(
+        '[MongooseConfig] - Connection has been established successfully',
+      );
+
+      this.isConnected = true;
     } else {
-      console.log('MongoDB | connection already exists');
+      console.log('[MongooseConfig] - Connection already exists');
     }
   }
 
   public async disconnect() {
     if (Mongoose.connection?.readyState === 1) {
       await Mongoose.connection.close();
-      console.log('MongoDB | connection was closed successfully');
+      this.isConnected = false;
+      console.log('[MongooseConfig] - Connection was closed successfully');
     }
   }
 }

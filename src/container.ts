@@ -1,3 +1,4 @@
+import { mongoose } from './configs';
 import { PhraseController } from './controllers';
 import { PhrasesRepository } from './repositories';
 import { GetLastPhraseService } from './services';
@@ -11,7 +12,11 @@ let phraseController: PhraseController;
 // Repositories memory cache
 let phrasesRepository: PhrasesRepository;
 
-export const container = () => {
+export const container = async () => {
+  if (!mongoose.isConnected) {
+    await mongoose.connect();
+  }
+
   phrasesRepository = phrasesRepository || new PhrasesRepository();
 
   getLastPhraseService =

@@ -2,9 +2,18 @@ import {
   Phrase,
   PhrasesRepository as PhrasesRepositoryInterface,
 } from '../interfaces';
+import { PhraseModel } from '../models';
 
 export class PhrasesRepository implements PhrasesRepositoryInterface {
+  private readonly mongooseRepository: typeof PhraseModel;
+
+  constructor() {
+    this.mongooseRepository = PhraseModel;
+  }
+
   public async getLast(): Promise<Phrase | null> {
-    return null;
+    const [phrase = null] = await this.mongooseRepository.find().limit(1);
+
+    return phrase;
   }
 }
