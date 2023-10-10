@@ -12,7 +12,9 @@ export class PhrasesRepository implements PhrasesRepositoryInterface {
   }
 
   public async getLast(): Promise<Phrase | null> {
-    const [phrase = null] = await this.mongooseRepository.find().limit(1);
+    const phrase = await this.mongooseRepository
+      .findOne({})
+      .sort({ createdAt: -1 });
 
     return phrase;
   }

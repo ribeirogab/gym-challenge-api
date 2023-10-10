@@ -7,7 +7,7 @@ export const phraseRoutes = async (app: FastifyInstance) => {
 
   // Get last phrase
   app.get(
-    '/last',
+    '/latest',
     controllers.phraseController.getLastPhrase.bind(
       controllers.phraseController,
     ),

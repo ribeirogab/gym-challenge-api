@@ -1,1 +1,1 @@
-export * from './phrases/get-last-phrase.service';
+export * from './phrases/get-latest-phrase.service';
