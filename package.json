@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@faker-js/faker": "7.6.0",
     "@fastify/aws-lambda": "^3.3.0",
     "env-var": "^7.4.1",
     "fastify": "^4.23.2",

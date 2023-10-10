@@ -16,4 +16,8 @@ export class PhrasesRepository implements PhrasesRepositoryInterface {
 
     return phrase;
   }
+
+  public async create(phrase: Phrase): Promise<void> {
+    await this.mongooseRepository.create(phrase);
+  }
 }

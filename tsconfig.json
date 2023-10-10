@@ -1,14 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "module": "commonjs",
     "target": "ES2021",
-    "esModuleInterop": true,
-    "allowJs": true,
-    "resolveJsonModule": true
-  },
-  "exclude": ["scripts", "dist", "tsup.config.ts"]
+    "outDir": "dist",
+    "allowJs": true
+  }
 }
