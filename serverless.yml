@@ -20,6 +20,11 @@ provider:
   environment:
     NODE_ENV: ${self:custom.nodeEnv.${sls:stage}}
     STAGE: ${sls:stage}
+    MONGODB_DB_NAME: gym-challenge
+    MONGODB_URI_OPTIONS: retryWrites=true&w=majority
+    MONGODB_URL: ${ssm:/${sls:stage}/mongodb/url}
+    MONGODB_USER: ${ssm:/${sls:stage}/mongodb/user}
+    MONGODB_PASSWORD: ${ssm:/${sls:stage}/mongodb/password}
 
 package:
   individually: true
