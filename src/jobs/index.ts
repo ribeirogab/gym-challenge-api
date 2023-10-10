@@ -2,5 +2,7 @@ import { JobsEnum } from '../constants/jobs.constants';
 import { container } from './container';
 
 export const handler = async ({ job: jobName }: { job: JobsEnum }) => {
-  return container({ job: jobName }).job().execute;
+  const job = await container({ job: jobName }).jobContainer();
+
+  return job.execute();
 };

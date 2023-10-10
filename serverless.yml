@@ -14,7 +14,7 @@ provider:
   name: aws
   region: us-east-1
   runtime: nodejs18.x
-  memorySize: 1024
+  memorySize: 512
   stage: prod
   stackName: ${self:custom.stackName}
   environment:
@@ -55,7 +55,7 @@ functions:
     package:
       patterns:
         - "!./**"
-        - dist/jobs/**
+        - dist/**
     events:
       - schedule:
           rate: cron(* * * * ? *)

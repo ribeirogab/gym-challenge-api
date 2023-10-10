@@ -6,7 +6,7 @@ type Container = {
 };
 
 type Jobs = {
-  [key in JobsEnum]: () => { execute: () => Promise<void> };
+  [key in JobsEnum]: () => Promise<{ execute: () => Promise<void> }>;
 };
 
 export const container = ({ job }: Container) => {
@@ -14,5 +14,5 @@ export const container = ({ job }: Container) => {
     [JobsEnum.CreateRandomPhrase]: createRandomPhraseJobContainer,
   };
 
-  return { job: jobs[job] };
+  return { jobContainer: jobs[job] };
 };
