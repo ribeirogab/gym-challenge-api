@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsup src",
+    "build": "tsup",
     "dev": "tsx watch src/api-dev.ts",
     "deploy": "./scripts/deploy.sh",
     "postinstall": "node ./scripts/postinstall.js"
