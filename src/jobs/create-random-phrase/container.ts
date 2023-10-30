@@ -1,4 +1,4 @@
-import { mongoose, randomConfig } from '../../configs';
+import { mongoose, openAIConfig } from '../../configs';
 import { PhrasesRepository } from '../../repositories';
 import { CreateRandomPhraseJob } from './index';
 
@@ -9,5 +9,5 @@ export const createRandomPhraseJobContainer = async () => {
 
   const phrasesRepository = new PhrasesRepository();
 
-  return new CreateRandomPhraseJob(phrasesRepository, randomConfig);
+  return new CreateRandomPhraseJob(phrasesRepository, openAIConfig);
 };

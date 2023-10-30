@@ -6,4 +6,6 @@ export const env = {
   MONGODB_URL: get('MONGODB_URL').required().asString(),
   MONGODB_USER: get('MONGODB_USER').required().asString(),
   MONGODB_PASSWORD: get('MONGODB_PASSWORD').required().asString(),
+
+  OPENAI_API_KEY: get('OPENAI_API_KEY').required().asString(),
 };

@@ -1,17 +1,17 @@
 import {
   CreateRandomPhraseJob as CreateRandomPhraseJobInterface,
+  OpenAIConfig,
   PhrasesRepository,
-  RandomConfig,
 } from '../../interfaces';
 
 export class CreateRandomPhraseJob implements CreateRandomPhraseJobInterface {
   constructor(
     private readonly phrasesRepository: PhrasesRepository,
-    private readonly randomConfig: RandomConfig,
+    private readonly openAIConfig: OpenAIConfig,
   ) {}
 
   public async execute() {
-    const text = this.randomConfig.generateRandomPhrase();
+    const text = await this.openAIConfig.generateRandomPhrase();
 
     console.log('[CreateRandomPhraseJob] - Creating random phrase...');
 

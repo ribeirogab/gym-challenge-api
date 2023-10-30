@@ -26,6 +26,7 @@ provider:
     MONGODB_URL: ${ssm:/${sls:stage}/mongodb/url}
     MONGODB_USER: ${ssm:/${sls:stage}/mongodb/user}
     MONGODB_PASSWORD: ${ssm:/${sls:stage}/mongodb/password}
+    OPENAI_API_KEY: ${ssm:/${sls:stage}/openai/api-key}
 
 package:
   individually: true

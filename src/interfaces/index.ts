@@ -1,5 +1,6 @@
 // Configs
 export * from './configs/random.config';
+export * from './configs/openai.config';
 
 // Controllers
 export * from './controllers/phrase.controller';

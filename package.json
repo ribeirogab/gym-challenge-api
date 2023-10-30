@@ -17,7 +17,8 @@
     "@fastify/aws-lambda": "^3.3.0",
     "env-var": "^7.4.1",
     "fastify": "^4.23.2",
-    "mongoose": "^7.6.0"
+    "mongoose": "^7.6.0",
+    "openai": "^3.3.0"
   },
   "devDependencies": {
     "@ribeirogab/eslint-config": "^1.2.3",
