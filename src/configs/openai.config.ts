@@ -27,7 +27,7 @@ export class OpenAIConfig implements OpenAIConfigInterface {
   }
 
   public async generateRandomPhrase(): Promise<string> {
-    const text = 'Gere uma frase com, no máximo, 4 palavras';
+    const text = 'Gere uma frase engraçada com, no máximo, 4 palavras';
 
     const prompts: Message[] = [
       {
