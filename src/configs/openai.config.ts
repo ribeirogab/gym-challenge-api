@@ -27,9 +27,22 @@ export class OpenAIConfig implements OpenAIConfigInterface {
   }
 
   public async generateRandomPhrase(): Promise<string> {
-    const text = 'Gere uma frase engraçada com, no máximo, 4 palavras';
+    const text = 'Gere uma frase.';
 
     const prompts: Message[] = [
+      {
+        role: Roles.System,
+        content: 'Você será responsável por gerar uma frase aleatória.',
+      },
+      {
+        role: Roles.System,
+        content: 'A frase deve conter no máximo 4 palavras.',
+      },
+      {
+        role: Roles.System,
+        content:
+          'A frase não deve conter aspas, exemplo ERRADO: "amo meu cachorro", exemplo CORRETO: amo meu cachorro.',
+      },
       {
         role: Roles.User,
         content: text,
@@ -46,7 +59,9 @@ export class OpenAIConfig implements OpenAIConfigInterface {
       .map((choice) => choice.message.content)
       .filter((response) => !!response);
 
-    return responses[0];
+    const formattedPhrase = responses[0].replace(/["]/g, '');
+
+    return formattedPhrase;
   }
 }
 
