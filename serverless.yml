@@ -49,6 +49,22 @@ functions:
           method: any
           path: /{any+}
 
+  jobs:
+    handler: dist/jobs/index.handler
+    name: ${self:custom.functionName}-jobs
+    layers:
+      - !Ref DependenciesLambdaLayer
+    package:
+      patterns:
+        - "!./**"
+        - dist/**
+    events:
+      - schedule:
+          rate: cron(0 3 * * ? *)
+          enabled: true
+          input:
+            job: 'create-random-phrase'
+
 layers:
   dependencies:
     name: ${self:custom.functionName}-dependencies-layer
