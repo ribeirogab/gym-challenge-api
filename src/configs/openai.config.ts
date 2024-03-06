@@ -27,7 +27,49 @@ export class OpenAIConfig implements OpenAIConfigInterface {
   }
 
   public async generateRandomPhrase(): Promise<string> {
+    let formattedPhrase = await this.getFormattedPhrase();
+
+    while (formattedPhrase.split(' ').length > 4) {
+      formattedPhrase = await this.getFormattedPhrase();
+    }
+
+    return formattedPhrase;
+  }
+
+  async getFormattedPhrase() {
     const text = 'Gere uma frase.';
+    const wordsMustContain = [
+      'Gabriel',
+      'Theus',
+      'Nub',
+      'Quel',
+      'Thiago',
+      'pé',
+      'preto',
+      'verde',
+      'amarelo',
+      'roxo',
+      'cansado',
+      'xaos',
+      'inxu',
+      'grosso',
+      'molhado',
+      'aberto',
+      'peludo',
+      'casquento',
+      'sujo',
+      'fedido',
+      'duro',
+      'comprido',
+      'grosso',
+      'largo',
+      'grande',
+    ];
+
+    const randomWorld =
+      wordsMustContain[Math.floor(Math.random() * wordsMustContain.length)];
+    const otherRandomWorld =
+      wordsMustContain[Math.floor(Math.random() * wordsMustContain.length)];
 
     const prompts: Message[] = [
       {
@@ -40,8 +82,11 @@ export class OpenAIConfig implements OpenAIConfigInterface {
       },
       {
         role: Roles.System,
-        content:
-          'A frase não deve conter aspas, exemplo ERRADO: "amo meu cachorro", exemplo CORRETO: amo meu cachorro.',
+        content: `A frase deve conter as palavras: ${randomWorld} e ${otherRandomWorld}.`,
+      },
+      {
+        role: Roles.System,
+        content: 'A frase não deve conter pontuação.',
       },
       {
         role: Roles.User,

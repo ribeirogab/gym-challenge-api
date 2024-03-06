@@ -19,6 +19,12 @@ export class PhrasesRepository implements PhrasesRepositoryInterface {
     return phrase;
   }
 
+  public async getByText(text: string): Promise<Phrase | null> {
+    const phrase = await this.mongooseRepository.findOne({ text });
+
+    return phrase;
+  }
+
   public async create(phrase: Phrase): Promise<void> {
     await this.mongooseRepository.create(phrase);
   }

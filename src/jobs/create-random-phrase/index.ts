@@ -11,9 +11,16 @@ export class CreateRandomPhraseJob implements CreateRandomPhraseJobInterface {
   ) {}
 
   public async execute() {
-    const text = await this.openAIConfig.generateRandomPhrase();
+    let text = await this.openAIConfig.generateRandomPhrase();
 
     console.log('[CreateRandomPhraseJob] - Creating random phrase...');
+
+    let textAlreadyExists = await this.phrasesRepository.getByText(text);
+
+    while (textAlreadyExists) {
+      text = await this.openAIConfig.generateRandomPhrase();
+      textAlreadyExists = await this.phrasesRepository.getByText(text);
+    }
 
     await this.phrasesRepository.create({ text });
 
