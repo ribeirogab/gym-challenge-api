@@ -27,16 +27,34 @@ export class OpenAIConfig implements OpenAIConfigInterface {
   }
 
   public async generateRandomPhrase(): Promise<string> {
-    let formattedPhrase = await this.getFormattedPhrase();
+    let count = 0;
+    let randomPhrase = null;
+    let randomWorlds = true;
 
-    while (formattedPhrase.split(' ').length > 4) {
-      formattedPhrase = await this.getFormattedPhrase();
+    while (count < 3) {
+      const formattedPhrase = await this.getFormattedPhrase({
+        randomWorlds,
+      });
+
+      if (formattedPhrase.split(' ').length <= 4) {
+        randomPhrase = formattedPhrase;
+
+        break;
+      }
+
+      count++;
+
+      await new Promise((resolve) => setTimeout(resolve, 6000));
+
+      if (count === 2) {
+        randomWorlds = false;
+      }
     }
 
-    return formattedPhrase;
+    return randomPhrase;
   }
 
-  async getFormattedPhrase() {
+  async getFormattedPhrase({ randomWorlds = true }) {
     const text = 'Gere uma frase.';
     const wordsMustContain = [
       'Gabriel',
@@ -82,7 +100,9 @@ export class OpenAIConfig implements OpenAIConfigInterface {
       },
       {
         role: Roles.System,
-        content: `A frase deve conter as palavras: ${randomWorld} e ${otherRandomWorld}.`,
+        content: randomWorlds
+          ? `A frase deve conter as palavras: ${randomWorld} e ${otherRandomWorld}.`
+          : '',
       },
       {
         role: Roles.System,
